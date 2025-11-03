@@ -1,0 +1,22 @@
+/* Banner 1200x300 */
+.hero-1200x300 {
+  height: 300px;
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: .75rem;
+}
+.hero-1200x300 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Thumbnails 400x200 */
+.thumb-400x200 {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background-color: #e9ecef; /* agradable con PNGs con transparencia */
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}

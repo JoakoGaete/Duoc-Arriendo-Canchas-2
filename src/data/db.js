@@ -7,9 +7,33 @@ const defaultDB = {
     { id: 'antonio-varas', nombre: 'DUOC UC — Antonio Varas' },
   ],
   canchas: [
-    { id: 1, sedeId: 'mall-plaza-norte', nombre: 'Cancha 1 Futbolito', tipo: 'futbolito', precioHora: 15000 },
-    { id: 2, sedeId: 'mall-plaza-norte', nombre: 'Cancha 2 Futbolito', tipo: 'futbolito', precioHora: 15000 },
-    { id: 3, sedeId: 'antonio-varas', nombre: 'Cancha 1 Baby Fútbol', tipo: 'baby', precioHora: 12000 },
+    {
+      id: 1,
+      sedeId: 'mall-plaza-norte',
+      nombre: 'Cancha 1 Futbolito',
+      tipo: 'futbolito',
+      precioHora: 15000,
+      promo: true,
+      img: '/images/canchas/mallnorte-1.png'
+    },
+    {
+      id: 2,
+      sedeId: 'mall-plaza-norte',
+      nombre: 'Cancha 2 Futbolito',
+      tipo: 'futbolito',
+      precioHora: 15000,
+      promo: false,
+      img: '/images/canchas/mallnorte-2.png'
+    },
+    {
+      id: 3,
+      sedeId: 'antonio-varas',
+      nombre: 'Cancha 1 Baby Fútbol',
+      tipo: 'baby',
+      precioHora: 12000,
+      promo: true,
+      img: '/images/canchas/antoniovaras-1.png'
+    },
   ],
   reservas: [] // {id, canchaId, sedeId, fecha, hora, nombre, email, telefono, total}
 }
@@ -29,8 +53,19 @@ export function listSedes() { return [...db.sedes] }
 // Canchas
 export function listCanchas() { return [...db.canchas] }
 export function listCanchasBySede(sedeId) { return db.canchas.filter(c => c.sedeId === sedeId) }
+export function listCanchasPromo() { return db.canchas.filter(c => c.promo) }
+export function listCanchasFiltradas({ base = [], texto = '', tipo = '' } = {}) {
+  let out = base.length ? [...base] : [...db.canchas]
+  if (tipo) out = out.filter(c => c.tipo === tipo)
+  if (texto) {
+    const q = texto.toLowerCase()
+    out = out.filter(c => c.nombre.toLowerCase().includes(q))
+  }
+  return out
+}
+
 export function createCancha(data) {
-  const item = { id: nextId(db.canchas), ...data }
+  const item = { id: nextId(db.canchas), promo: false, img: '/images/canchas/mallnorte-1.png', ...data }
   db.canchas.push(item); save(db); return item
 }
 export function updateCancha(id, changes) {
