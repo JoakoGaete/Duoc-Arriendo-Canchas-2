@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div>
       <div className="hero mb-4 shadow-sm">
-        <img src="/images/hero.jpg" alt="Canchas DUOC UC" className="rounded" style={{ display: 'block', margin: '0 auto', maxWidth: '100%', height: 'auto' }} />
+        <img src="/images/home.jpg" alt="Canchas DUOC UC" className="rounded" style={{ display: 'block', margin: '0 auto', maxWidth: '100%', height: 'auto' }} />
       </div>
 
   
