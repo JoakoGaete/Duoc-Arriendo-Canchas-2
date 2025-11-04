@@ -3,10 +3,10 @@ import React from "react";
 export default function Contacto() {
   return (
     <div>
-      {/* 🖼️ Sección Hero */}
+      
       <div className="hero-300 mb-4 shadow-sm position-relative">
         <img
-          src="/images/contacto.jpg" // reemplázalo por tu imagen
+          src="/images/contacto.jpg" 
           alt="Contáctanos"
           className="w-100"
           style={{ height: "300px", objectFit: "cover" }}
@@ -17,7 +17,7 @@ export default function Contacto() {
         </div>
       </div>
 
-      {/* 💬 Sección información */}
+      
       <div className="container my-5">
         <h2 className="mb-3">¿Quiénes somos?</h2>
         <p>
@@ -33,7 +33,7 @@ export default function Contacto() {
         </ul>
       </div>
 
-      {/* 🗺️ Sección mapa */}
+      
       <div className="container mb-5">
         <h3 className="mb-3">Nuestra ubicación</h3>
         <div className="ratio ratio-16x9">

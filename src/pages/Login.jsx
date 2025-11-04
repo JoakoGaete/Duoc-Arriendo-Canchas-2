@@ -19,7 +19,7 @@ export default function Login() {
       return
     }
 
-    // Si el login es exitoso:
+    
     if (user.rol === 'admin') {
       navigate('/admin')
     } else {
