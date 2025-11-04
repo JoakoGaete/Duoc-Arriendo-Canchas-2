@@ -15,8 +15,8 @@ export default function Home() {
 
   return (
     <div>
-      <div className="hero-1200x300 mb-4 shadow-sm">
-        <img src="/images/login.avif" alt="Canchas DUOC UC" className="img-fluid w-100 rounded" />
+      <div className="hero mb-4 shadow-sm">
+        <img src="/images/hero.jpg" alt="Canchas DUOC UC" className="rounded" style={{ display: 'block', margin: '0 auto', maxWidth: '100%', height: 'auto' }} />
       </div>
 
   

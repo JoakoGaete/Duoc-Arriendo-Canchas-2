@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { listCanchasBySede } from '../data/db'
+import { listCanchas, listCanchasBySede } from '../data/db'
 import { useReserva } from '../context/ReservaContext'
 import { useMemo, useState } from 'react'
 
@@ -7,13 +7,16 @@ export default function Canchas() {
   const { sedeId } = useParams()
   const nav = useNavigate()
   const { setSede, setCancha } = useReserva()
-  const base = listCanchasBySede(sedeId)
+  const todas = listCanchas() // todas las canchas
+  const base = sedeId ? todas.filter(c => c.sedeId === sedeId) : todas
+
+
 
   const [texto, setTexto] = useState('')
   const [tipo, setTipo] = useState('')
 
   const filtradas = useMemo(() => {
-    let arr = [...base]
+    let arr = listCanchas()
     if (tipo) arr = arr.filter(c => c.tipo === tipo)
     if (texto) {
       const q = texto.toLowerCase()
