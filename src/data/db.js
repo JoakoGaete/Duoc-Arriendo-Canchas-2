@@ -35,13 +35,23 @@ const defaultDB = {
       img: '/images/canchas/antoniovaras-1.png'
     },
   ],
-  reservas: [] // {id, canchaId, sedeId, fecha, hora, nombre, email, telefono, total}
+  reservas: [], // {id, canchaId, sedeId, fecha, hora, nombre, email, telefono, total}
+  usuarios: [
+    { id: 1, nombre: 'Admin', email: 'admin@duocuc.cl', password: '1234', rol: 'admin' },
+    { id: 2, nombre: 'Dylan', email: 'dylan@duocuc.cl', password: 'abcd', rol: 'usuario' },
+    { id: 3, nombre: 'Joaquin', email: 'joaquin@duocuc.cl', password: '123456', rol: 'usuario' }
+  ]
 }
 
 function load() {
-  try { return JSON.parse(localStorage.getItem(KEY)) || { ...defaultDB } }
-  catch { return { ...defaultDB } }
+  try {
+    const stored = JSON.parse(localStorage.getItem(KEY))
+    return { ...defaultDB, ...stored }  // mezcla con los valores por defecto
+  } catch {
+    return { ...defaultDB }
+  }
 }
+
 function save(data) { localStorage.setItem(KEY, JSON.stringify(data)) }
 
 let db = load()
@@ -90,3 +100,46 @@ export function deleteReserva(id) {
   db.reservas = db.reservas.filter(r => r.id !== Number(id))
   save(db)
 }
+
+// Usuarios
+export function login(email, password) {
+  const db = JSON.parse(localStorage.getItem(KEY)) || defaultDB;
+  const user = db.usuarios.find(u => u.email === email && u.password === password);
+
+  if (user) {
+    localStorage.setItem('usuarioActivo', JSON.stringify(user));
+    return user;
+  }
+  return null;
+}
+
+export function logout() {
+  localStorage.removeItem('usuarioActivo');
+}
+
+export function getUsuarioActivo() {
+  return JSON.parse(localStorage.getItem('usuarioActivo'));
+}
+
+export function registrarUsuario(nombre, email, password) {
+  const db = JSON.parse(localStorage.getItem(KEY)) || defaultDB;
+
+  const existe = db.usuarios.find(u => u.email === email);
+  if (existe) return false;
+
+  const nuevoUsuario = {
+    id: Date.now(),
+    nombre,
+    email,
+    password,
+    rol: 'usuario',
+  };
+
+  db.usuarios.push(nuevoUsuario);
+  localStorage.setItem(KEY, JSON.stringify(db)); // guarda en la misma base
+  return true;
+}
+
+
+
+

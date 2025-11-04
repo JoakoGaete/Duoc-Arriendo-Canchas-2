@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useReserva } from '../context/ReservaContext'
-import { createReserva } from '../data/db'
-import { useState } from 'react'
+import { createReserva,getUsuarioActivo } from '../data/db'
+import { useState, useEffect} from 'react'
 
 export default function Reserva() {
   const { seleccion, setFecha, setHora, setDatos, clear } = useReserva()
@@ -12,6 +12,19 @@ export default function Reserva() {
     e.preventDefault()
     if (!seleccion.cancha) { setMsg('Elige una cancha desde la sede.'); return }
     if (!seleccion.fecha || !seleccion.hora) { setMsg('Selecciona fecha y hora.'); return }
+    if (!/^\d+$/.test(seleccion.datos.telefono)) {
+      setMsg('El teléfono debe contener solo números')
+      return
+    }
+    if (seleccion.datos.telefono.length<8 || seleccion.datos.telefono.length>10 ){
+      setMsg('verifique el largo de su numero celular')
+      return
+    }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@(duocuc\.cl|profesorduoc\.cl)$/i
+    if (!emailRegex.test(seleccion.datos.email)) {
+      setMsg('El email debe ser @duocuc.cl o @profesorduoc.cl')
+      return
+    }
 
     try {
       const total = seleccion.cancha.precioHora
@@ -25,8 +38,10 @@ export default function Reserva() {
         telefono: seleccion.datos.telefono,
         total
       })
+      const email = seleccion.datos.email
+
       clear()
-      nav('/confirmacion')
+      nav('/confirmacion', { state: { email } })
     } catch {
       nav('/error')
     }

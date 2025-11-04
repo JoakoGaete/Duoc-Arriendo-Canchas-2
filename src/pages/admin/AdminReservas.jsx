@@ -11,7 +11,7 @@ export default function AdminReservas() {
       {!items.length && <p>No hay reservas aún.</p>}
       <div className="table-responsive">
         <table className="table table-sm">
-          <thead><tr><th>ID</th><th>Sede</th><th>Cancha</th><th>Fecha</th><th>Hora</th><th>Nombre</th><th>Total</th><th></th></tr></thead>
+          <thead><tr><th>ID</th><th>Sede</th><th>Cancha</th><th>Fecha</th><th>Hora</th><th>Nombre</th> <th>Email</th><th>Total</th><th></th></tr></thead>
           <tbody>
             {items.map(r => (
               <tr key={r.id}>
@@ -21,6 +21,7 @@ export default function AdminReservas() {
                 <td>{r.fecha}</td>
                 <td>{r.hora}</td>
                 <td>{r.nombre}</td>
+                <td>{r.email}</td>
                 <td>${r.total.toLocaleString('es-CL')}</td>
                 <td><button className="btn btn-sm btn-outline-danger" onClick={() => { deleteReserva(r.id); refresh() }}>Eliminar</button></td>
               </tr>

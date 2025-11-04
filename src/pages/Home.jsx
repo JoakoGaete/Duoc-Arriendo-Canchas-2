@@ -5,7 +5,7 @@ import { useReserva } from '../context/ReservaContext'
 export default function Home() {
   const { setSede, setCancha } = useReserva()
   const nav = useNavigate()
-  const canchas = listCanchas() // .slice(0, 6) si quieres solo 6
+  const canchas = listCanchas() 
 
   function reservarRapido(c) {
     setSede(c.sedeId)
@@ -15,15 +15,13 @@ export default function Home() {
 
   return (
     <div>
-      {/* Banner 1200x300 */}
       <div className="hero-1200x300 mb-4 shadow-sm">
-        <img src="/images/hero.png" alt="Canchas DUOC UC" />
+        <img src="/images/login.avif" alt="Canchas DUOC UC" className="img-fluid w-100 rounded" />
       </div>
 
-      {/* Barra de navegación secundaria similar a tu mock (opcional) */}
+  
       <div className="d-flex justify-content-between align-items-center mb-2">
         <nav className="nav">
-          <Link className="nav-link px-0 me-3" to="/">Home</Link>
           <Link className="nav-link px-0 me-3" to="/categorias">Categorías</Link>
           <Link className="nav-link px-0 me-3" to="/ofertas">Ofertas</Link>
           <Link className="nav-link px-0 me-3" to="/blog">Blog</Link>
@@ -34,7 +32,7 @@ export default function Home() {
 
       <h2 className="mb-3 text-center">Categorías</h2>
 
-      {/* Tarjetas 400x200 con canchas */}
+      
       <div className="row g-3">
         {canchas.map(c => (
           <div className="col-12 col-sm-6 col-md-4" key={c.id}>
