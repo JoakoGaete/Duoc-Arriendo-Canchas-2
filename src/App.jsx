@@ -9,8 +9,8 @@ import Sedes from './pages/Sedes'
 import Categories from './pages/Categories' // alias de sedes
 import Canchas from './pages/Canchas'
 import Offers from './pages/Offers'
-import Cart from './pages/Cart' // carrito simple (opcional, pero útil para el anexo)
-import Reserva from './pages/Reserva' // Checkout
+import Historial from './pages/Historial' 
+import Reserva from './pages/Reserva' 
 import Confirmacion from './pages/Confirmacion'
 import ErrorPago from './pages/ErrorPago'
 import NotFound from './pages/NotFound'
@@ -52,7 +52,7 @@ export default function App() {
           <Route path="/sedes" element={<Sedes />} />
           <Route path="/sedes/:sedeId" element={<Canchas />} />
           <Route path="/ofertas" element={<Offers />} />
-          <Route path="/carrito" element={<Cart />} />
+          <Route path="/historial" element={<Historial />} />
           <Route path="/reserva" element={<Reserva />} />
           <Route path="/confirmacion" element={<Confirmacion />} />
           <Route path="/login" element={<Login />} />

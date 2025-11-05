@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <Link className="navbar-brand" to="/">DUOC Canchas</Link>
+        <Link className="navbar-brand" to="/">⚽️DUOC Canchas⚽️</Link>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
           <span className="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@ export default function Navbar() {
           <ul className="navbar-nav me-auto">
             <li className="nav-item"><NavLink className="nav-link" to="/categorias">Categorías</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" to="/ofertas">Ofertas</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/reserva">Checkout</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" to="/contacto">Contacto</NavLink></li>
 
             
             {user?.rol === 'admin' && (
@@ -32,7 +32,7 @@ export default function Navbar() {
           </ul>
 
           <ul className="navbar-nav">
-            <li className="nav-item"><NavLink className="nav-link" to="/carrito">🛒</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" to="/Historial">📋</NavLink></li>
 
             {/* 👇 Si hay sesión iniciada */}
             {user ? (

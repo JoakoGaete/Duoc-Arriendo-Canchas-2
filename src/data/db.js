@@ -92,13 +92,22 @@ export function deleteCancha(id) {
 
 // Reservas
 export function listReservas() { return [...db.reservas] }
-export function createReserva(data) {
-  const item = { id: nextId(db.reservas), ...data }
-  db.reservas.push(item); save(db); return item
+
+export function getReservas() {
+  return db.reservas ? [...db.reservas] : []
 }
 export function deleteReserva(id) {
   db.reservas = db.reservas.filter(r => r.id !== Number(id))
   save(db)
+}
+export function createReserva(data) {
+  const item = { id: nextId(db.reservas), ...data }
+  db.reservas.push(item)
+  save(db)
+  return item
+}
+export function getReservasByUser(email) {
+  return db.reservas.filter(r => r.email === email)
 }
 
 // Usuarios

@@ -27,7 +27,7 @@ export default function Home() {
           <Link className="nav-link px-0 me-3" to="/blog">Blog</Link>
           <Link className="nav-link px-0" to="/contacto">Contacto</Link>
         </nav>
-        <Link to="/reserva" className="btn btn-success">🛒 Carrito $0</Link>
+        <Link to="/historial" className="btn btn-success">Historial de reservas 📋</Link>
       </div>
 
       <h2 className="mb-3 text-center">Categorías</h2>
