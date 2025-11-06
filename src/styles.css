@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 🎨 PALETA DE COLORES INSTITUCIONAL DUOC UC */
 :root {
   --color-primario: #00205B;     /* Azul DUOC UC */
@@ -113,13 +114,20 @@ a:hover {
 /* ===========================
    🖼️ HERO Y MINIATURAS
    =========================== */
+=======
+/* Banner 1200x300 */
+>>>>>>> fae62cc91373162343bfaa973f522d9482a2c0f6
 .hero-1200x300 {
   height: 300px;
   max-height: 300px;
   overflow: hidden;
+<<<<<<< HEAD
   border-radius: 0.75rem;
   border: 3px solid var(--color-secundario);
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+=======
+  border-radius: .75rem;
+>>>>>>> fae62cc91373162343bfaa973f522d9482a2c0f6
 }
 .hero-1200x300 img {
   width: 100%;
@@ -127,11 +135,16 @@ a:hover {
   object-fit: cover;
 }
 
+<<<<<<< HEAD
 /* Miniaturas de canchas */
+=======
+/* Thumbnails 400x200 */
+>>>>>>> fae62cc91373162343bfaa973f522d9482a2c0f6
 .thumb-400x200 {
   width: 100%;
   height: 200px;
   object-fit: cover;
+<<<<<<< HEAD
   background-color: var(--color-fondo);
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
@@ -178,3 +191,28 @@ footer {
   padding: 1rem 0;
   border-top: 4px solid var(--color-secundario);
 }
+=======
+  background-color: #e9ecef; /* agradable con PNGs con transparencia */
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+  display: block;
+}
+>>>>>>> fae62cc91373162343bfaa973f522d9482a2c0f6
