@@ -1,29 +1,55 @@
+// src/pages/Login.jsx
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { login } from '../data/db'
-import { Link } from "react-router-dom";
-
+import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
+import { useReserva } from '../context/ReservaContext'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
+  const { setUsuarioActivo } = useReserva() // contexto para guardar usuario activo
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const user = login(email, password)
+    setError('') // limpiar error anterior
 
-    if (!user) {
-      setError('Credenciales inválidas. Intenta nuevamente.')
-      return
-    }
+    try {
+      // Llamada al microservicio de usuarios
+      const res = await axios.post(
+        '/users/login',
+        { email, password },
+        { withCredentials: true } // importante si el backend usa HttpSession
+      )
 
-    
-    if (user.rol === 'admin') {
-      navigate('/admin')
-    } else {
-      navigate('/')
+      const user = res.data
+
+      if (!user || !user.id) {
+        setError('Credenciales inválidas. Intenta nuevamente.')
+        return
+      }
+
+      // Guardamos el usuario activo en el contexto
+      setUsuarioActivo(user)
+
+      // Redirigimos según rol
+      if (user.isAdmin) {
+        navigate('/admin')
+      } else {
+        navigate('/')
+      }
+
+    } catch (err) {
+      console.error('Error login:', err)
+      // Mostrar mensaje de error según respuesta del backend
+      if (err.response?.status === 404) {
+        setError('Usuario no encontrado.')
+      } else if (err.response?.status === 401) {
+        setError('Contraseña incorrecta.')
+      } else {
+        setError('Error de conexión al servidor.')
+      }
     }
   }
 
@@ -54,13 +80,12 @@ export default function Login() {
 
           <button type="submit" className="btn btn-primary w-100">Ingresar</button>
         </form>
+
         <div className="text-center mt-4">
-        <Link to="/registro" className="btn btn-primary">¿No tienes cuenta? Registrate</Link>
+          <Link to="/registro" className="btn btn-primary">¿No tienes cuenta? Regístrate</Link>
+        </div>
       </div>
-    
-      </div>
-    
-      
     </div>
   )
 }
+

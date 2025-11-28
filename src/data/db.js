@@ -32,7 +32,7 @@ const defaultDB = {
       tipo: 'baby',
       precioHora: 12000,
       promo: true,
-      img: '/images/canchas/antoniovaras-1.png'
+      img: '/images/cancha1.png'
     },
   ],
   reservas: [], // {id, canchaId, sedeId, fecha, hora, nombre, email, telefono, total}

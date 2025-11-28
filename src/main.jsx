@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './styles.css'   // <— importante
+import { ReservaProvider } from './context/ReservaContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <ReservaProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
+    </ReservaProvider>
   </React.StrictMode>
 )

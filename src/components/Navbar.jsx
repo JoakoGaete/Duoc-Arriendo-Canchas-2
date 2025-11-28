@@ -1,13 +1,13 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { getUsuarioActivo, logout } from '../data/db'
+import { useReserva } from '../context/ReservaContext' // usamos contexto
 
 export default function Navbar() {
   const navigate = useNavigate()
-  const user = getUsuarioActivo()
+  const { usuarioActivo, setUsuarioActivo } = useReserva() // obtenemos usuario activo del contexto
 
   const handleLogout = () => {
-    logout()
-    navigate('/') // vuelve al inicio tras cerrar sesión
+    setUsuarioActivo(null) // limpiamos el usuario activo en el contexto
+    navigate('/')           // vuelve al inicio tras cerrar sesión
   }
 
   return (
@@ -25,8 +25,7 @@ export default function Navbar() {
             <li className="nav-item"><NavLink className="nav-link" to="/ofertas">Ofertas</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" to="/contacto">Contacto</NavLink></li>
 
-            
-            {user?.rol === 'admin' && (
+            {usuarioActivo?.isAdmin && (
               <li className="nav-item"><NavLink className="nav-link" to="/admin">Admin</NavLink></li>
             )}
           </ul>
@@ -35,10 +34,10 @@ export default function Navbar() {
             <li className="nav-item"><NavLink className="nav-link" to="/Historial">📋</NavLink></li>
 
             {/* 👇 Si hay sesión iniciada */}
-            {user ? (
+            {usuarioActivo ? (
               <>
                 <li className="nav-item">
-                  <span className="nav-link">Hola, {user.nombre}</span>
+                  <span className="nav-link">Hola, {usuarioActivo.name}</span>
                 </li>
                 <li className="nav-item">
                   <button onClick={handleLogout} className="btn btn-outline-light ms-2">Cerrar sesión</button>
@@ -56,5 +55,3 @@ export default function Navbar() {
     </nav>
   )
 }
-
-  

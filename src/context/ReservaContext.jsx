@@ -1,29 +1,49 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
-const Ctx = createContext()
-export const useReserva = () => useContext(Ctx)
+const ReservaContext = createContext()
 
 export function ReservaProvider({ children }) {
   const [seleccion, setSeleccion] = useState({
-    sedeId: '',
     cancha: null,
+    sedeId: '',
+    fecha: '',
+    hora: '',
+    datos: { nombre: '', email: '', telefono: '' }
+  })
+  const [usuarioActivo, setUsuarioActivo] = useState(null)
+  const [canchas, setCanchas] = useState([])
+
+  const setSede = (sedeId) => setSeleccion(prev => ({ ...prev, sedeId }))
+  const setCancha = (cancha) => setSeleccion(prev => ({ ...prev, cancha }))
+  const setFecha = (fecha) => setSeleccion(prev => ({ ...prev, fecha }))
+  const setHora = (hora) => setSeleccion(prev => ({ ...prev, hora }))
+  const setDatos = (datos) => setSeleccion(prev => ({ ...prev, datos }))
+  const clear = () => setSeleccion({
+    cancha: null,
+    sedeId: '',
     fecha: '',
     hora: '',
     datos: { nombre: '', email: '', telefono: '' }
   })
 
-  const api = useMemo(() => ({
-    seleccion,
-    setSede: (sedeId) => setSeleccion(s => ({ ...s, sedeId })),
-    setCancha: (cancha) => setSeleccion(s => ({ ...s, cancha })),
-    setFecha: (fecha) => setSeleccion(s => ({ ...s, fecha })),
-    setHora: (hora) => setSeleccion(s => ({ ...s, hora })),
-    setDatos: (datos) => setSeleccion(s => ({ ...s, datos })),
-    clear: () => setSeleccion({
-      sedeId: '', cancha: null, fecha: '', hora: '',
-      datos: { nombre: '', email: '', telefono: '' }
-    })
-  }), [seleccion])
-
-  return <Ctx.Provider value={api}>{children}</Ctx.Provider>
+  return (
+    <ReservaContext.Provider value={{
+      seleccion,
+      setSede,
+      setCancha,
+      setFecha,
+      setHora,
+      setDatos,
+      clear,
+      usuarioActivo,
+      setUsuarioActivo,
+      canchas,
+      setCanchas
+    }}>
+      {children}
+    </ReservaContext.Provider>
+  )
 }
+
+export const useReserva = () => useContext(ReservaContext)
+
