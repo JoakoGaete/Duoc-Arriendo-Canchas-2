@@ -1,0 +1,279 @@
+/* 🎨 PALETA DE COLORES INSTITUCIONAL DUOC UC */
+:root {
+  --color-primario: #00205B;     /* Azul DUOC UC */
+  --color-secundario: #FFD100;   /* Amarillo DUOC UC */
+  --color-fondo: #F4F5F7;        /* Gris claro */
+  --color-texto: #333333;        /* Gris oscuro */
+  --color-exito: #009639;        /* Verde cancha */
+  --color-error: #D62828;        /* Rojo validación */
+}
+
+/* ===========================
+   🎯 ESTILOS GENERALES
+   =========================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ===========================
+   🔝 NAVBAR
+   =========================== */
+
+.navbar {
+  background: linear-gradient(90deg, var(--color-primario), #00153a);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.navbar-brand span {
+  color: var(--color-secundario);
+}
+
+.nav-link {
+  font-weight: 500;
+}
+
+.nav-link.active {
+  border-bottom: 2px solid var(--color-secundario);
+}
+
+/* ===========================
+   🏠 HOME / SECCIONES
+   =========================== */
+
+.home-page {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+/* Hero principal */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: radial-gradient(circle at top left, #0040a0, #00122b);
+  color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-img-wrapper {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-position: center;
+  background-size: cover;
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: rgba(0, 32, 91, 0.85);
+  color: var(--color-secundario);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  max-width: 520px;
+  opacity: 0.9;
+}
+
+/* Tira de navegación rápida */
+.home-nav-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ===========================
+   🧩 TARJETAS / CARDS
+   =========================== */
+
+.card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.thumb-400x200,
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.price-tag {
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.badge-location {
+  background-color: rgba(0, 32, 91, 0.08);
+  color: var(--color-primario);
+}
+
+/* ===========================
+   🔘 BOTONES
+   =========================== */
+
+.btn-primary {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.btn-primary:hover {
+  background-color: #00153a;
+  border-color: #00153a;
+}
+
+.btn-outline-primary {
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primario);
+  color: #fff;
+}
+
+.btn-success {
+  background-color: var(--color-exito);
+  border-color: var(--color-exito);
+}
+
+.btn-success:hover {
+  background-color: #00762c;
+  border-color: #00762c;
+}
+
+/* ===========================
+   📋 FORMULARIOS
+   =========================== */
+
+.form-control:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 0.25rem rgba(0, 32, 91, 0.25);
+}
+
+.text-danger,
+.invalid-feedback {
+  color: var(--color-error) !important;
+}
+
+/* ===========================
+   📅 TABLAS
+   =========================== */
+
+.table thead {
+  background-color: var(--color-primario);
+  color: #fff;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(0, 32, 91, 0.02);
+}
+
+/* ===========================
+   📱 RESPONSIVE
+   =========================== */
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .home-nav-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ===========================
+   👣 FOOTER
+   =========================== */
+
+.site-footer {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+}
+
+.site-footer a {
+  color: #fff;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
