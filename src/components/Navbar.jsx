@@ -53,20 +53,17 @@ export default function Navbar() {
 
             {/* ZONA DE USUARIO */}
             {user ? (
-              <div className="dropdown">
-                <button 
-                  className="btn btn-outline-light dropdown-toggle d-flex align-items-center gap-2 border-0" 
-                  type="button" data-bs-toggle="dropdown" aria-expanded="false"
-                >
-                  <div className="bg-light text-dark rounded-circle d-flex align-items-center justify-content-center fw-bold" 
-                       style={{width: '35px', height: '35px'}}>
-                    {user.nombre ? user.nombre.charAt(0).toUpperCase() : 'U'}
-                  </div>
-                  <div className="text-start lh-1 d-none d-lg-block">
-                    <span className="d-block small text-white-50">Hola,</span>
-                    <span className="fw-bold">{user.nombre || 'Usuario'}</span>
-                  </div>
-                </button>
+  <div className="dropdown">
+    <button className="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+      <div className="bg-light text-dark rounded-circle d-flex align-items-center justify-content-center fw-bold" 
+           style={{width: '35px', height: '35px'}}>
+        {user.name ? user.name.charAt(0).toUpperCase() : 'U'}
+      </div>
+      <div className="text-start lh-1 d-none d-lg-block">
+        <span className="d-block small text-white-50">Hola,</span>
+        <span className="fw-bold">{user.name || 'Usuario'}</span>
+      </div>
+    </button>
                 <ul className="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2">
                   <li><h6 className="dropdown-header">Mi Cuenta</h6></li>
                   {user.role === 'admin' && (

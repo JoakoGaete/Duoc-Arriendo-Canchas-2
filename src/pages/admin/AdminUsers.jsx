@@ -12,7 +12,7 @@ export default function AdminUsers() {
 
   const cargarUsuarios = () => {
     // Ajusta el puerto si tu microservicio de usuarios corre en otro (ej: 8081 o 8084)
-    axios.get('http://localhost:8084/api/users') 
+    axios.get('http://localhost:8085/api/users') 
       .then(res => {
         setUsuarios(res.data)
         setCargando(false)
@@ -26,7 +26,7 @@ export default function AdminUsers() {
   const eliminarUsuario = async (id) => {
     if (!window.confirm("¿Estás seguro de eliminar este usuario?")) return;
     try {
-      await axios.delete(`http://localhost:8084/api/users/${id}`)
+      await axios.delete(`http://localhost:8085/api/users/${id}`)
       alert("Usuario eliminado correctamente 🗑️")
       cargarUsuarios()
     } catch (error) {
